@@ -1,14 +1,11 @@
-
 Select *
 From Portfolio_Project..CovidDeaths$
 Where continent is not null
 order by 3,4
 
-
 Select *
 From Portfolio_Project..CovidVaccination$
 order by 3,4
-
 
 -- Selected variables 
 
@@ -23,18 +20,15 @@ From Portfolio_Project..CovidDeaths$
 Where location like 'Africa%'
 order by 1,2
 
-
 --Comparing Total cases with Population
 --Percentage Population infected with Covid
 Select Location, Date, Population, total_cases, (total_cases/population)*100 as PopulationPercentage
 From Portfolio_Project..CovidDeaths$
---Where location like 'Africa%'
 order by 1,2
 
 --Showing Comparison of Countries with highest infection rate with Population
 Select Location, Population, Max(total_cases) as HighestInfectionCount, MAX(total_cases/population)*100 as PercentagePopulationInfected
 From Portfolio_Project..CovidDeaths$
---Where location like 'Africa%'
 Group by Location, Population
 order by PercentagePopulationInfected DESC
 
@@ -53,7 +47,6 @@ Where continent is not null
 Group by continent
 order by TotalDeathCount desc
 
-
 --GLOBAL DETAILS
 --Global cases, death, and death percentage By date
 Select Date, SUM(new_cases) as TotalNewCases, SUM(cast(new_deaths as int)) as TotalNewDeath, SUM(cast(new_deaths as int))/SUM(new_cases)*100
@@ -67,12 +60,10 @@ order by 1,2
 Select SUM(new_cases) as TotalNewCases, SUM(cast(new_deaths as int)) as TotalNewDeath, SUM(cast(new_deaths as int))/SUM(new_cases)*100
 as DeathPercentage
 From Portfolio_Project..CovidDeaths$
---Where location like 'Africa%'
 Where continent is not null
 order by 1,2
 
 --Showing Total Population vs Vaccination
-
 Select dea.continent, dea.location, dea.date, dea.population, vac.new_vaccinations
 , SUM(CONVERT(int,vac.new_vaccinations)) OVER (Partition by dea.Location Order by dea.date)
 as CummulativePeopleVaccinated
@@ -100,7 +91,6 @@ Select *, (CummulativePeopleVaccinated/Population)*100
 From PopVac
 
 --Using Temporary (TEMP) TABLE to perform former query with CTE
-
 DROP TABLE if EXISTS #PercentPopVaccinated
 Create table #PercentPopVaccinated
 (
