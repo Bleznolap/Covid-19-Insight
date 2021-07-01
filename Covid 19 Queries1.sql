@@ -126,10 +126,3 @@ Join Portfolio_Project..CovidVaccination$ vac
 	On dea.location = vac.location
 	and dea.date = vac.date
 Where dea.continent is not null
-
-Select *
-FROM PercentPopVaccinated
-
-
-
-
