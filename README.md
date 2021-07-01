@@ -1,4 +1,4 @@
-# Covid-19-Insight
+# Covid-19-Insight with TSql
 Creating insight to understand the spread  and impact of Covid-19 across the globe.
 The Covid-19 data was collected from 'Our World in Data' website.
 
